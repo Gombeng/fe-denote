@@ -9,13 +9,13 @@ import { HashLoader } from 'react-spinners';
 
 const customStyles = {
 	content: {
-        top: '50%',
-        left: '5vw',
-        transform: 'translate(0, -50%)',
-        margin: '0 auto',
-        width: '90vw',
-        maxWidth: '768px',
-        height: 'fit-content',
+		top: '50%',
+		left: '5vw',
+		transform: 'translate(0, -50%)',
+		margin: '0 auto',
+		width: '90vw',
+		maxWidth: '768px',
+		height: 'fit-content',
 		background: color.nav,
 		borderRadius: '.3rem',
 	},
@@ -24,7 +24,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const ModalComp = ({ isOpen }) => {
-	const id = JSON.parse(localStorage.getItem('user')).userId;
+	const id = JSON.parse(localStorage.getItem('user'));
 
 	const [title, setTitle] = useState('');
 	const [note, setNote] = useState('');
@@ -61,12 +61,8 @@ const ModalComp = ({ isOpen }) => {
 				},
 				config
 			);
-
-			console.log(data);
-
-			// localStorage.setItem('user', JSON.stringify(data));
 			setLoading(false);
-			window.location.reload()
+			window.location.reload();
 			setIsOpen(false);
 		} catch (error) {
 			setLoading(false);
@@ -91,6 +87,7 @@ const ModalComp = ({ isOpen }) => {
 					{error && <h3 style={{ color: '#f04848' }}>{error}</h3>}
 					<Box margin="1rem" />
 
+					{/* make title optional */}
 					<Input
 						required
 						label="Title"
@@ -101,6 +98,7 @@ const ModalComp = ({ isOpen }) => {
 					/>
 					<Box margin="1rem" />
 
+					{/* make title optional */}
 					<Textarea
 						required
 						label="Note"

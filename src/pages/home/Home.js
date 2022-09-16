@@ -12,7 +12,7 @@ const Home = () => {
 	useEffect(() => {
 		setLoading(true);
 
-		const id = JSON.parse(localStorage.getItem('user')).userId;
+		const id = JSON.parse(localStorage.getItem('user'));
 
 		axios
 			.get(`https://denoter-server.herokuapp.com/api/users/${id}/notes`)

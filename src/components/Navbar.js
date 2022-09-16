@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React from 'react';
+import {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../utils/Color';
-import { Button } from './Components';
 import {
 	IconClose,
 	IconLogo,
@@ -15,7 +14,7 @@ const Navbar = () => {
 	const navigate = useNavigate();
 
 	const logOut = () => {
-		let confirmBox = window.confirm('r u sure?');
+		let confirmBox = window.confirm('Logout now?');
 		if (confirmBox) {
 			localStorage.clear();
 			navigate('/login');

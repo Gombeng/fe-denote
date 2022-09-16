@@ -45,7 +45,7 @@ const Login = () => {
 				config
 			);
 
-			localStorage.setItem('user', JSON.stringify(data));
+			localStorage.setItem('user', JSON.stringify(data.userId));
 			setLoading(false);
 			navigate('/home');
 		} catch (error) {
