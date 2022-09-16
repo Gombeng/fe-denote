@@ -25,9 +25,10 @@ const Navbar = () => {
 	return (
 		<Box>
 			<Navcontainer>
-				<img src={IconLogo} alt="logo" />
-				<h3>Denote</h3>
-				<div></div>
+				<div>
+					<img src={IconLogo} alt="logo" />
+					<h3>Denote</h3>
+				</div>
 
 				{/* <NavLink
 						className={({ isActive }) => (isActive ? 'link active' : 'link')}
@@ -59,6 +60,13 @@ const Navcontainer = styled.div`
 	max-width: 768px;
 	margin: 0 auto;
 	min-height: 10vh;
+
+	div {
+		display: flex;
+		img {
+			margin-right: 1rem;
+		}
+	}
 
 	img {
 		width: 1.8rem;

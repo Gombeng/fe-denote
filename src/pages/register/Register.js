@@ -37,7 +37,7 @@ const Login = () => {
 			setLoading(true);
 
 			const { data } = await axios.post(
-				'http://localhost:5000/api/user/register',
+				'http://localhost:5000/api/users/register',
 				{
 					email,
 					password,
@@ -64,7 +64,7 @@ const Login = () => {
 				<Box margin="2rem" />
 
 				<form onSubmit={submitHandler}>
-					<HashLoader color="#fff" loading={loading} />
+					<HashLoader color={color.btn} loading={loading} />
 					{error && <h3 style={{ color: '#f04848' }}>{error}</h3>}
 					<Box margin="1rem" />
 

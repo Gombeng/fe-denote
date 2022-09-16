@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { HashLoader } from 'react-spinners';
-import { Box, Container, Note } from '../../components/Components';
+import { Box, Container, ModalComp, Note } from '../../components/Components';
 import { color } from '../../utils/Color';
-import styled from 'styled-components';
-import { IconAdd } from '../../assets/Assets';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const [data, setData] = useState([]);
@@ -14,14 +11,17 @@ const Home = () => {
 
 	useEffect(() => {
 		setLoading(true);
+
+		const id = JSON.parse(localStorage.getItem('user')).userId;
+
 		axios
-			.get('http://localhost:5000/api/post/getAll')
+			.get(`http://localhost:5000/api/users/${id}/notes`)
 			.then((res) => {
-				if (res.data.length === 0) {
-					setError('Gagal memuat data!');
+				if (res.data._notes.length === 0) {
+					setError('No Note to display, go add some!');
 				}
 				setLoading(false);
-				const note = res.data.reverse();
+				const note = res.data._notes.reverse();
 				setData(note);
 			})
 			.catch((err) => setError('Gagal memuat data!'));
@@ -35,35 +35,20 @@ const Home = () => {
 					color={color.btn}
 					loading={loading}
 				/>
+
+				{error && (
+					<h3 style={{ color: '#f04848', marginTop: '5rem' }}>{error}</h3>
+				)}
+
 				{data.map(({ title, note, create }, index) => (
 					<Note key={index} title={title} note={note} create={create} />
 				))}
 
 				<Box margin="2rem" />
+				<ModalComp />
 			</div>
-
-			<Fab>
-				<Link to="/add-note">
-					<img src={IconAdd} alt="add" />
-				</Link>
-			</Fab>
 		</Container>
 	);
 };
 
 export default Home;
-
-const Fab = styled.div`
-	position: fixed;
-	right: 5%;
-	bottom: 3%;
-	cursor: pointer;
-
-	img {
-		width: 4rem;
-		background-color: white;
-		border-radius: 50%;
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-			rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-	}
-`;

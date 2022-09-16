@@ -1,10 +1,10 @@
+import axios from 'axios';
+import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { HashLoader } from 'react-spinners';
 import { Box, Button, Input } from '../../components/Components';
 import { color } from '../../utils/Color';
-import styled from 'styled-components';
 import { IconLogo } from '../../assets/Assets';
 
 const Login = () => {
@@ -37,7 +37,7 @@ const Login = () => {
 			setLoading(true);
 
 			const { data } = await axios.post(
-				'http://localhost:5000/api/user/login',
+				'http://localhost:5000/api/users/login',
 				{
 					email,
 					password,
@@ -51,6 +51,7 @@ const Login = () => {
 		} catch (error) {
 			setLoading(false);
 			setError(error.response.data.message);
+			console.log(error.response)
 		}
 	};
 	return (

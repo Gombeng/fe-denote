@@ -17,11 +17,11 @@ export default Note;
 const Container = styled.div`
 	color: ${color.nav};
 	background-color: ${color.input};
-	width: 90%;
+	width: 90vw;
 	max-width: 768px;
-	border-radius: 0.3rem;
 	padding: 1rem;
 	margin: 1.3rem auto 0;
+	border-radius: 0.3rem;
 	cursor: pointer;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
 		rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -36,5 +36,9 @@ const Container = styled.div`
 
 	strong {
 		font-size: 12px;
+	}
+
+	&:hover {
+		background-color: hsl(55, 67%, 65%);
 	}
 `;
