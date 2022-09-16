@@ -54,7 +54,7 @@ const ModalComp = ({ isOpen }) => {
 			setLoading(true);
 
 			const { data } = await axios.post(
-				`http://localhost:5000/api/users/add-note/${id}`,
+				`https://denoter-server.herokuapp.com/api/users/add-note/${id}`,
 				{
 					title,
 					note,

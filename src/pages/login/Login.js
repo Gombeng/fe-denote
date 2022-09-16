@@ -37,7 +37,7 @@ const Login = () => {
 			setLoading(true);
 
 			const { data } = await axios.post(
-				'http://localhost:5000/api/users/login',
+				'https://denoter-server.herokuapp.com/api/users/login',
 				{
 					email,
 					password,

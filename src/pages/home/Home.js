@@ -15,7 +15,7 @@ const Home = () => {
 		const id = JSON.parse(localStorage.getItem('user')).userId;
 
 		axios
-			.get(`http://localhost:5000/api/users/${id}/notes`)
+			.get(`https://denoter-server.herokuapp.com/api/users/${id}/notes`)
 			.then((res) => {
 				if (res.data._notes.length === 0) {
 					setError('No Note to display, go add some!');
@@ -40,7 +40,7 @@ const Home = () => {
 					<h3 style={{ color: '#f04848', marginTop: '5rem' }}>{error}</h3>
 				)}
 
-				{data.map(({ title, note, create }, index) => (
+				{data.map(({ _id, title, note, create }, index) => (
 					<Note key={index} title={title} note={note} create={create} />
 				))}
 
