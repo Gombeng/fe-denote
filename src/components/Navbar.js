@@ -1,5 +1,5 @@
 import React from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../utils/Color';
 import {
@@ -25,19 +25,19 @@ const Navbar = () => {
 		<Box>
 			<Navcontainer>
 				<div>
-					<img src={IconLogo} alt="logo" />
+					<img width={22} height={17.5} src={IconLogo} alt="logo" />
 					<h3>Denote</h3>
 				</div>
 
-				{/* <NavLink
-						className={({ isActive }) => (isActive ? 'link active' : 'link')}
-						to="home"
-					>
-						Home
-					</NavLink> */}
-
 				{/* <img src={IconSearch} alt="search" /> */}
-				<img onClick={logOut} src={IconPower} alt="logout" />
+				{/* specify widht and height in px for performance */}
+				<img
+					width={18}
+					height={20.16}
+					onClick={logOut}
+					src={IconPower}
+					alt="logout"
+				/>
 			</Navcontainer>
 		</Box>
 	);
@@ -62,13 +62,13 @@ const Navcontainer = styled.div`
 
 	div {
 		display: flex;
+		align-items: center;
 		img {
 			margin-right: 1rem;
 		}
 	}
 
 	img {
-		width: 1.8rem;
 		cursor: pointer;
 	}
 

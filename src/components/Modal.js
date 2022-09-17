@@ -73,7 +73,7 @@ const ModalComp = ({ isOpen }) => {
 	return (
 		<div>
 			<Fab>
-				<img src={IconAdd} alt="add" onClick={openModal} />
+				<img width={50} height={50} src={IconAdd} alt="add" onClick={openModal} />
 			</Fab>
 
 			<Modal
@@ -125,7 +125,6 @@ const Fab = styled.div`
 	cursor: pointer;
 
 	img {
-		width: 4rem;
 		background-color: white;
 		border-radius: 50%;
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,

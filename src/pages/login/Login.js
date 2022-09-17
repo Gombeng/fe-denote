@@ -57,7 +57,7 @@ const Login = () => {
 	return (
 		<Container>
 			<div>
-				<img width={80} src={IconLogo} alt="logo" />
+				<img width={80} height={80} src={IconLogo} alt="logo" />
 				<Box margin="2rem" />
 				<h2>Welcome back Denoter!</h2>
 				<Box margin=".5rem" />
