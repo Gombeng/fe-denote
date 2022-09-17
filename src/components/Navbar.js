@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../utils/Color';
 import {
-	IconClose,
+	// IconClose,
 	IconLogo,
-	IconMenu,
+	// IconMenu,
 	IconPower,
-	IconSearch,
+	// IconSearch,
 } from '../assets/Assets';
 
 const Navbar = () => {
@@ -25,15 +25,13 @@ const Navbar = () => {
 		<Box>
 			<Navcontainer>
 				<div>
-					<img width={22} height={17.5} src={IconLogo} alt="logo" />
+					<img width={30} height={25.5} src={IconLogo} alt="logo" />
 					<h3>Denote</h3>
 				</div>
 
-				{/* <img src={IconSearch} alt="search" /> */}
-				{/* specify widht and height in px for performance */}
 				<img
-					width={18}
-					height={20.16}
+					width={20}
+					height={22.16}
 					onClick={logOut}
 					src={IconPower}
 					alt="logout"

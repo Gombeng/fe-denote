@@ -51,13 +51,13 @@ const Login = () => {
 		} catch (error) {
 			setLoading(false);
 			setError(error.response.data.message);
-			console.log(error.response)
+			console.log(error.response);
 		}
 	};
 	return (
 		<Container>
 			<div>
-				<img width={80} height={80} src={IconLogo} alt="logo" />
+				<img width={80} height={63.72} src={IconLogo} alt="logo" />
 				<Box margin="2rem" />
 				<h2>Welcome back Denoter!</h2>
 				<Box margin=".5rem" />
