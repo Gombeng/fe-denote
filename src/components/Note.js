@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IconBin } from '../assets/Assets';
 import { color } from './../utils/Color';
 
 const Note = ({ title, note, create, btnDelete }) => {

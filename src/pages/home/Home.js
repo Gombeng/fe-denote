@@ -4,11 +4,10 @@ import { HashLoader } from 'react-spinners';
 import { Box, Button, Container, Note } from '../../components/Components';
 import { color } from '../../utils/Color';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 const Home = () => {
 	const userData = JSON.parse(localStorage.getItem('user'));
-	const userId = userData.data._id;
+	const userId = userData.data?._id;
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
@@ -85,8 +84,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const Flexbox = styled.div`
-	display: flex;
-	justify-content: space-between;
-`;
