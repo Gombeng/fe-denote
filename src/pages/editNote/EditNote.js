@@ -99,6 +99,7 @@ const EditNote = () => {
 			{oldNote && (
 				<Flexbox>
 					<Note
+						style={{ width: '70vw' }}
 						title={oldNote.title}
 						note={oldNote.note}
 						create={oldNote.created}

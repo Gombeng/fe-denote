@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { color } from './../utils/Color';
 
-const Note = ({ title, note, create, btnDelete }) => {
+const Note = ({ title, note, create, btnDelete, ...rest }) => {
 	return (
-		<Container>
+		<Container {...rest}>
 			<div>
 				<h3>{title}</h3>
 				<p>{note}</p>
