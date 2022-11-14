@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const userData = JSON.parse(localStorage.getItem('user'));
-	const userId = userData.data?._id;
+	const userId = userData?.data._id;
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
