@@ -15,14 +15,15 @@ export default Textarea;
 
 const Container = styled.div`
 	p {
-		margin-bottom: .5rem;
+		color: ${color.nav};
+		margin-bottom: 0.5rem;
 	}
 
 	textarea {
 		all: unset;
 		padding: 1rem;
 		width: 90%;
-        height: 15vh;
+		height: 15vh;
 		border-radius: 0.3rem;
 		color: ${color.nav};
 		background-color: ${color.input};

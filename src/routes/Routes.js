@@ -4,7 +4,15 @@ import {
 	Routes as Switch,
 	Route,
 } from 'react-router-dom';
-import { Login, Register, MainApp, Home, NotFound } from '../pages/Pages';
+import {
+	Login,
+	Register,
+	MainApp,
+	Home,
+	NotFound,
+	CreateNote,
+	EditNote,
+} from '../pages/Pages';
 
 const Routes = () => {
 	return (
@@ -15,6 +23,8 @@ const Routes = () => {
 				<Route exact path="/" element={<MainApp />}>
 					<Route index element={<Home />} />
 					<Route exact path="home" element={<Home />} />
+					<Route exact path="create" element={<CreateNote />} />
+					<Route exact path="edit/:noteId" element={<EditNote />} />
 					<Route exact path="*" element={<NotFound />} />
 				</Route>
 			</Switch>

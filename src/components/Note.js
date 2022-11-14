@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { color } from '../utils/Color';
+import { IconBin } from '../assets/Assets';
+import { color } from './../utils/Color';
 
-const Note = ({ title, note, create }) => {
+const Note = ({ title, note, create, btnDelete }) => {
 	return (
 		<Container>
-			<h3>{title}</h3>
-			<p>{note}</p>
-			<strong>{create}</strong>
+			<div>
+				<h3>{title}</h3>
+				<p>{note}</p>
+				<strong>{create}</strong>
+			</div>
 		</Container>
 	);
 };
@@ -15,30 +18,36 @@ const Note = ({ title, note, create }) => {
 export default Note;
 
 const Container = styled.div`
-	color: ${color.nav};
-	background-color: ${color.input};
-	width: 90vw;
-	max-width: 768px;
-	padding: 1rem;
-	margin: 1.3rem auto 0;
-	border-radius: 0.3rem;
-	cursor: pointer;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-		rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+	display: flex;
+	align-items: center;
 
-	h3 {
-		margin-bottom: 0.5rem;
-	}
+	div {
+		color: ${color.nav};
+		background-color: ${color.input};
+		padding: 1rem;
+		margin: 1.3rem auto 0;
+		border-radius: 0.3rem;
+		width: 90vw;
+		max-width: 708px;
+		cursor: pointer;
+		position: relative;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+			rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 
-	p {
-		margin-bottom: 0.5rem;
-	}
+		&:hover {
+			background-color: hsl(55, 67%, 65%);
+		}
 
-	strong {
-		font-size: 12px;
-	}
+		h3 {
+			margin-bottom: 0.5rem;
+		}
 
-	&:hover {
-		background-color: hsl(55, 67%, 65%);
+		p {
+			margin-bottom: 0.5rem;
+		}
+
+		strong {
+			font-size: 12px;
+		}
 	}
 `;

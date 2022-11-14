@@ -24,8 +24,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const ModalComp = ({ isOpen }) => {
-	const id = JSON.parse(localStorage.getItem('user'));
-
+	const userData = JSON.parse(localStorage.getItem('user'));
+	const userId = userData.data._id;
 	const [title, setTitle] = useState('');
 	const [note, setNote] = useState('');
 	const [error, setError] = useState('');
@@ -41,39 +41,43 @@ const ModalComp = ({ isOpen }) => {
 	}
 
 	const submitHandler = async (e) => {
-		e.preventDefault();
 		setError(null);
-
-		try {
-			const config = {
-				headers: {
-					'Content-type': 'application/json',
-				},
-			};
-
-			setLoading(true);
-
-			const { data } = await axios.post(
-				`https://denoter-server.herokuapp.com/api/users/add-note/${id}`,
+		setLoading(true);
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+			},
+		};
+		await axios
+			.post(
+				`https://denoter-server.herokuapp.com/api/notes/create/${userId}`,
 				{
 					title,
 					note,
 				},
 				config
-			);
-			setLoading(false);
-			window.location.reload();
-			setIsOpen(false);
-		} catch (error) {
-			setLoading(false);
-			setError(error.response.data.message);
-		}
+			)
+			.then((data) => {
+				console.log(data);
+				setLoading(false);
+				setIsOpen(false);
+			})
+			.catch((err) => {
+				setLoading(false);
+				setError(error.response.data.message);
+			});
 	};
 
 	return (
 		<div>
 			<Fab>
-				<img width={50} height={50} src={IconAdd} alt="add" onClick={openModal} />
+				<img
+					width={50}
+					height={50}
+					src={IconAdd}
+					alt="add"
+					onClick={openModal}
+				/>
 			</Fab>
 
 			<Modal

@@ -4,6 +4,7 @@ import IconClose from './icons/close.png';
 import IconSearch from './icons/SEARCH.png';
 import IconAdd from './icons/add.png';
 import IconPower from './icons/power.png';
+import IconBin from './icons/bin.png';
 import FontPoppins from './fonts/Poppins-Regular.ttf';
 
 export {
@@ -13,5 +14,6 @@ export {
 	IconAdd,
 	IconClose,
 	IconPower,
+	IconBin,
 	FontPoppins,
 };

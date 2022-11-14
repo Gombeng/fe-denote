@@ -15,7 +15,8 @@ export default Input;
 
 const Container = styled.div`
 	p {
-		margin-bottom: .5rem;
+		margin-bottom: 0.5rem;
+		color: ${color.nav};
 	}
 
 	input {

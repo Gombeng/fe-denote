@@ -1,14 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../utils/Color';
-import {
-	// IconClose,
-	IconLogo,
-	// IconMenu,
-	IconPower,
-	// IconSearch,
-} from '../assets/Assets';
+import { IconLogo, IconPower } from '../assets/Assets';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -25,7 +19,9 @@ const Navbar = () => {
 		<Box>
 			<Navcontainer>
 				<div>
-					<img width={30} height={25.5} src={IconLogo} alt="logo" />
+					<Link to={`/`}>
+						<img width={30} height={25.5} src={IconLogo} alt="logo" />
+					</Link>
 					<h3>Denote</h3>
 				</div>
 
@@ -46,7 +42,10 @@ export default Navbar;
 const Box = styled.div`
 	background: ${color.nav};
 	position: sticky;
+	z-index: 100;
 	top: 0;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+		rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 `;
 
 const Navcontainer = styled.div`
