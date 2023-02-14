@@ -12,12 +12,14 @@ const Home = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
+	const LOCAL_URL = 'http://localhost:8910'
+	const PROD_URL = 'https://be-denote.vercel.app'
+
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get(`https://denoter-server.herokuapp.com/api/notes/user/${userId}`)
+			.get(`${PROD_URL}/api/notes/user/${userId}`)
 			.then(({ data }) => {
-				console.log(data);
 				setLoading(false);
 				setError(false);
 				setData(data.data._notes.reverse());
@@ -54,7 +56,7 @@ const Home = () => {
 						</Link>
 					))
 				) : (
-					<div>
+					<>
 						<h3
 							style={{
 								color: '#f04848',
@@ -72,7 +74,7 @@ const Home = () => {
 								style={{ textAlign: 'center', margin: '1rem auto 0' }}
 							/>
 						</Link>
-					</div>
+					</>
 				)}
 
 				<Box margin="2rem" />

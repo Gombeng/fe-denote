@@ -9,23 +9,27 @@ import Note from './../../components/Note';
 import { IconBin } from '../../assets/Assets';
 
 const EditNote = () => {
-	const [oldNote, setOldNote] = useState('');
-	const [title, setTitle] = useState('');
-	const [note, setNote] = useState('');
-	const [error, setError] = useState('');
-	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate();
 
+	const PROD_URL = 'https://be-denote.vercel.app'
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
+
+	const [formData, setFormData] = useState({
+		title: '',
+		note: '',
+	});
+
+	const navigate = useNavigate();
 	const { noteId } = useParams();
 
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get(`https://denoter-server.herokuapp.com/api/notes/${noteId}`)
+			.get(`${PROD_URL}/api/notes/${noteId}`)
 			.then(({ data }) => {
 				setLoading(false);
 				setError(false);
-				setOldNote(data.data);
+				setFormData(data.data);
 			})
 			.catch((err) => {
 				setLoading(false);
@@ -33,26 +37,34 @@ const EditNote = () => {
 			});
 	}, [setLoading, noteId]);
 
+	const config = {
+		headers: {
+			'Content-type': 'application/json',
+		},
+	};
+
+	const handleChange = e => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		setError(null);
 		setLoading(true);
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-			},
-		};
+
 		await axios
 			.patch(
-				`https://denoter-server.herokuapp.com/api/notes/edit/${noteId}`,
+				`${PROD_URL}/api/notes/edit/${noteId}`,
 				{
-					title,
-					note,
+					title: formData.title,
+					note: formData.note,
 				},
 				config
 			)
 			.then((data) => {
-				console.log(data);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -67,22 +79,15 @@ const EditNote = () => {
 		e.preventDefault();
 		setError(null);
 		setLoading(true);
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-			},
-		};
 
 		let confirmBox = window.confirm('Delete this poem?');
 		if (confirmBox) {
 			await axios
 				.delete(
-					`https://denoter-server.herokuapp.com/api/notes/delete/${noteId}`,
-					// `http://localhost:5000/api/notes/delete/${noteId}`,
+					`${PROD_URL}/api/notes/delete/${noteId}`,
 					config
 				)
 				.then((data) => {
-					console.log(data);
 					setLoading(false);
 				})
 				.catch((err) => {
@@ -95,38 +100,21 @@ const EditNote = () => {
 	};
 
 	return (
-		<div>
-			{oldNote && (
-				<Flexbox>
-					<Note
-						style={{ width: '70vw' }}
-						title={oldNote.title}
-						note={oldNote.note}
-						create={oldNote.created}
-					/>
-
-					<DelButton onClick={deleteHandler}>
-						<img width={24} src={IconBin} alt="delete" />
-					</DelButton>
-				</Flexbox>
-			)}
-
+		<>
 			<Form onSubmit={submitHandler}>
-				<h3 style={{ color: '#002E31' }}>Edit Note</h3>
-				<Box margin="1rem" />
-				<HashLoader color={color.btn} loading={loading} />
-				<Box margin="1rem" />
+				<h3 style={{ color: '#002E31', margin: '2rem 0' }}>Edit Note</h3>
+				<HashLoader cssOverride={{ margin: '2rem 0' }} color={color.btn} loading={loading} />
 				{error && <h3 style={{ color: '#f04848' }}>{error}</h3>}
-				<Box margin="1rem" />
 
 				<Input
 					className="grid-item"
 					required
 					label="Title"
 					type="text"
+					name='title'
 					placeholder="Anything..."
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
+					value={formData.title}
+					onChange={handleChange}
 				/>
 				<Box margin="1rem" />
 
@@ -135,43 +123,24 @@ const EditNote = () => {
 					required
 					label="Note"
 					type="text"
+					name="note"
 					placeholder="Pour what in ur mind here..."
-					value={note}
-					onChange={(e) => setNote(e.target.value)}
+					value={formData.note}
+					onChange={handleChange}
 				/>
 				<Box margin="1.5rem" />
 
-				<Button label="Save" type="submit" />
+				<Button label="Save" type="submit" style={{marginRight: "1rem"}}/>
+				<Button label="Delete" onClick={deleteHandler} />
 			</Form>
-		</div>
+		</>
 	);
 };
 
 export default EditNote;
 
-const Flexbox = styled.form`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 1rem;
-`;
-
 const Form = styled.form`
 	width: 90vw;
 	max-width: 768px;
 	margin: 0 auto 2rem;
-`;
-
-const DelButton = styled.button`
-	all: unset;
-	border-radius: 0.3rem;
-	margin-left: 1rem;
-	padding: 0.8rem 0.8rem 0.3rem;
-	background-color: ${color.btn};
-	cursor: pointer;
-	transition: 0.3s all ease;
-
-	&:hover {
-		background-color: hsl(20.5, 100%, 55%);
-	}
 `;

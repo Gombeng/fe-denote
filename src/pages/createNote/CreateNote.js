@@ -7,34 +7,47 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const CreateNote = () => {
+
+	const PROD_URL = 'https://be-denote.vercel.app'
 	const userData = JSON.parse(localStorage.getItem('user'));
 	const userId = userData.data._id;
-	const [title, setTitle] = useState('');
-	const [note, setNote] = useState('');
+	const navigate = useNavigate();
+
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate();
+	const [formData, setFormData] = useState({
+		title: '',
+		note: '',
+	});
+
+	const handleChange = e => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const config = {
+		headers: {
+			'Content-type': 'application/json',
+		},
+	};
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		setError(null);
 		setLoading(true);
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-			},
-		};
+
 		await axios
 			.post(
-				`https://denoter-server.herokuapp.com/api/notes/create/${userId}`,
+				`${PROD_URL}/api/notes/create/${userId}`,
 				{
-					title,
-					note,
+					title: formData.title,
+					note: formData.note,
 				},
 				config
 			)
 			.then((data) => {
-				console.log(data);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -47,21 +60,19 @@ const CreateNote = () => {
 
 	return (
 		<Form onSubmit={submitHandler}>
-			<h3 style={{ color: '#002E31' }}>Create new Note</h3>
-			<Box margin="1rem" />
-			<HashLoader color={color.btn} loading={loading} />
-			<Box margin="1rem" />
+			<h3 style={{ color: '#002E31', margin: "2rem 0" }}>Create new Note</h3>
+			<HashLoader cssOverride={{ margin: "2rem 0" }} color={color.btn} loading={loading} />
 			{error && <h3 style={{ color: '#f04848' }}>{error}</h3>}
-			<Box margin="1rem" />
 
 			<Input
 				className="grid-item"
 				required
 				label="Title"
 				type="text"
+				name='title'
 				placeholder="Anything..."
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
+				value={formData.title}
+				onChange={handleChange}
 			/>
 			<Box margin="1rem" />
 
@@ -70,9 +81,10 @@ const CreateNote = () => {
 				required
 				label="Note"
 				type="text"
+				name='note'
 				placeholder="Pour what in ur mind here..."
-				value={note}
-				onChange={(e) => setNote(e.target.value)}
+				value={formData.note}
+				onChange={handleChange}
 			/>
 			<Box margin="1.5rem" />
 

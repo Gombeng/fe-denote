@@ -23,6 +23,9 @@ const Login = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const LOCAL_URL = 'http://localhost:8910'
+	const PROD_URL = 'https://be-denote.vercel.app'
+
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		setError(null);
@@ -37,7 +40,7 @@ const Login = () => {
 			setLoading(true);
 
 			const { data } = await axios.post(
-				'https://denoter-server.herokuapp.com/api/users/register',
+				`${PROD_URL}/api/users/register`,
 				{
 					email,
 					password,
