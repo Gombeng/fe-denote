@@ -97,6 +97,7 @@ const EditNote = () => {
 
 			navigate('/home');
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -130,7 +131,7 @@ const EditNote = () => {
 				/>
 				<Box margin="1.5rem" />
 
-				<Button label="Save" type="submit" style={{marginRight: "1rem"}}/>
+				<Button label="Save" type="submit" style={{ marginRight: "1rem" }} />
 				<Button label="Delete" onClick={deleteHandler} />
 			</Form>
 		</>
