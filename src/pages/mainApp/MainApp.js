@@ -1,27 +1,26 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { Navbar } from '../../components/Components';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "../../components/Components";
 
 const MainApp = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		const user = localStorage.getItem('user');
+  useEffect(() => {
+    const user = localStorage.getItem("user");
 
-		if (!user) {
-			navigate('/signin');
-		}
-	}, [navigate]);
+    if (!user) {
+      navigate("/signin");
+    }
+  }, [navigate]);
 
+  return (
+    <div style={{ minHeight: "100vh" }}>
+      <Navbar />
 
-	return (
-		<div>
-			<Navbar />
-
-			<Outlet />
-		</div>
-	);
+      <Outlet />
+    </div>
+  );
 };
 
 export default MainApp;

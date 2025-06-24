@@ -1,16 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { GlobalStyles } from './utils/globalStyles';
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from "./components/ui/provider";
+import { Toaster } from "./components/ui/toaster";
+import { Theme } from "@chakra-ui/react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<GlobalStyles />
-		<App />
-	</React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <Provider>
+      <Toaster />
+
+      <Theme appearance="light" colorPalette="">
+        <App />
+      </Theme>
+    </Provider>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
